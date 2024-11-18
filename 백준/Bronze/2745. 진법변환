@@ -1,0 +1,10 @@
+const fs = require('fs');
+const input = fs.readFileSync(0, 'utf-8').trim().toString();
+const [word, num] = input.split(" ");
+if(num==10){
+  console.log(word);
+}else{
+console.log(parseInt(word,Number(num)).toString(10));
+}
+
+//2745번 당직근무간 아이폰으로 풀어서 깃허브에 수작업으로 푸시함

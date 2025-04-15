@@ -1,29 +1,23 @@
-const fs = require('fs');
-const input = fs.readFileSync(0, 'utf-8').toString().trim();
-let backward = '';
-let forward = ''
-if(input.length%2!=0){ //홀수
-    for(let i=input.length-1; i>parseInt(input.length/2); i--){
-        backward+=input[i];
-    }
-    for(let i=0; i<parseInt(input.length/2); i++){
-        forward+=input[i];
-    }
-    if(forward == backward){
-        console.log(1);
-    }else{
-        console.log(0);
-    }
-}else if(input.length%2==0){ //짝수
-    for(let i=input.length-1; i>parseInt(input.length/2-1); i--){
-        backward+=input[i];
-    }
-    for(let i=0; i<parseInt(input.length/2); i++){
-        forward+=input[i];
-    }
-    if(forward == backward){
-        console.log(1);
-    }else{
-        console.log(0);
-    }
+const input = require("fs").readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input.txt").toString().trim();
+let testCase = '';
+let ans = '';
+if(input.length%2 == 0){
+  for(let i=0; i<input.length/2; i++){
+    testCase += input[i];
+  }
+  for(let i=input.length-1; i>=input.length/2; i--){
+    ans += input[i];
+  }
+} else if(input.length%2 == 1){
+  for(let i=0; i<Math.floor(input.length/2); i++){
+    testCase += input[i];
+  }
+  for(let i=input.length-1; i>Math.floor(input.length/2); i--){
+    ans += input[i];
+  }
+}
+if(ans==testCase){
+  console.log(1);
+}else{
+  console.log(0);
 }

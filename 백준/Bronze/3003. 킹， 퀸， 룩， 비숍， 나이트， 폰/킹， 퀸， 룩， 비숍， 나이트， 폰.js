@@ -1,8 +1,15 @@
-const fs = require('fs');
-const input = fs.readFileSync(0, 'utf-8').toString().trim().split(' ').map(Number);
-const arr = [1, 1, 2, 2, 2, 8];
-let ans = '';
+const input = require("fs").readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input.txt").toString().trim().split(" ");
+const testCase=[1,1,2,2,2,8];
+const answer=[0,0,0,0,0,0];
+let an = '';
 for(let i=0; i<input.length; i++){
-    ans += arr[i]-input[i]+" ";
+    answer[i]=testCase[i]-input[i];
 }
-console.log(ans);
+for(let i=0; i<input.length; i++){
+  an+=answer[i];
+  if(i!==5){
+    an+=' ';
+  }
+}
+console.log(an);
+  

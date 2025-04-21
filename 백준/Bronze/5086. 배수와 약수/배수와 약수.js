@@ -1,17 +1,11 @@
-const fs = require('fs');
-const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
-const left = [];
-const right = [];
+const input = require("fs").readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input.txt").toString().trim().split("\n").map((el)=>el.split(" ").map(Number));
+input.splice(input.length-1, 1);
 for(let i=0; i<input.length; i++){
-    left.push(input[i].split(" ")[0]);
-    right.push(input[i].split(" ")[1]);
-    if(i==input.length-1){
-    }else if(right[i] % left[i]==0){
+    if(input[i][1] % input[i][0] ==0){
         console.log("factor");
-    }else if(left[i] % right[i] ==0){
+    }else if(input[i][0] % input[i][1]==0){
         console.log("multiple");
     }else{
         console.log("neither");
     }
 }
-

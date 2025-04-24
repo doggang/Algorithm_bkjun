@@ -1,21 +1,18 @@
-const fs = require('fs');
-const input = fs.readFileSync(0, 'utf-8').trim().toString().split("\n").map((el)=>el.split(" ").map(Number));
-let max = 0;
-let min = 0;
-let mid = 0;
-for(let i=0; i<input.length; i++){
-    max = Number(input[i].splice(input[i].indexOf(Math.max(...input[i])),1));
-    min = Number(input[i].splice(input[i].indexOf(Math.min(...input[i])),1));
-    mid = input[i][0];
-    if((max>=min+mid) && ((max!==0 && min!==0) && ( min!==0 && mid!==0))){
-        console.log("Invalid");
-    }else if(max<min+mid){
-        if(max==min && min==mid){
-            console.log("Equilateral");
-        }else if(max==min || min==mid || max==mid){
-            console.log("Isosceles");
-        }else if(max!==min && min!==mid){
+const input = require("fs").readFileSync(process.platform === "linux" ? "/dev/stdin" : "./input.txt").toString().trim().split("\n").map((el)=>el.split(" ").map(Number));
+input.splice(input.length-1, 1);
+let long = 0;
+input.forEach(item => {
+    long = item.indexOf(Math.max(...item));
+    long = item.splice(long,1)[0];
+    if(long < item[0]+item[1]){
+        if(long==item[0] && long==item[1]){
+            console.log("Equilateral")
+        }else if((long==item[0] && long!==item[1]) || (long==item[1] && long!==item[0]) || (item[0]==item[1] && long!==item[0])){
+            console.log("Isosceles")
+        }else{
             console.log("Scalene");
         }
+    }else{
+        console.log("Invalid");
     }
-}
+});

@@ -1,10 +1,5 @@
 function solution(my_string, overwrite_string, s) {
-    var answer = '';
-    
-    let arr = my_string.split("");
-    for(let i=0; i<overwrite_string.length; i++){
-        arr[i+s] = overwrite_string[i];
-    }
-    answer = arr.join("");
-    return answer;
+    let answer = my_string.split("");
+    answer.splice(s, overwrite_string.length, overwrite_string);
+    return answer.join('');
 }
